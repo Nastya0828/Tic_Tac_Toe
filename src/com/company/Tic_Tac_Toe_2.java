@@ -8,7 +8,7 @@ public class Tic_Tac_Toe_2 {
     // 3. Определяем размеры массива
     static final int SIZE_X = 5;
     static final int SIZE_Y = 5;
-//    static final int WIN_COUNT = 4;
+    static final int WIN_COUNT = 4; // количество победных фишек вряд
 
     // 1. Создаем двумерный массив
     static char[][] field = new char[SIZE_Y][SIZE_X];
@@ -122,8 +122,7 @@ public class Tic_Tac_Toe_2 {
     private static boolean checkWin1(char sym, int x, int y) {
         int count = 0;
         int d = SIZE_X; //длина стороны квадратного поля d
-        int n = 4;   //количество фишек вряд для победы n=4
-        if (d - n >= y - x && y-x>0) {//проверка нижних диагоналей "\"
+        if (d - WIN_COUNT >= y - x && y-x>0) {//проверка нижних диагоналей "\"
             int a = 0; // начало левый верхний х
             int b; //= y - x - a; //начало левый верхний у
             int bz = d - 1; //конец правый нижний у
@@ -146,8 +145,7 @@ public class Tic_Tac_Toe_2 {
     private static boolean checkWin2(char sym, int x, int y) {
         int count = 0;
         int d = SIZE_X; //длина стороны квадратного поля d
-        int n = 4;   //количество фишек вряд для победы n=4
-        if (d - n  >= x - y && x-y >= 0) {    // проверка верхних диагоналей "\"
+        if (d - WIN_COUNT  >= x - y && x-y >= 0) {    // проверка верхних диагоналей "\"
             int b = 0; //начало левый верхний y
             int a = x - y; // начало левый верхний x
             int az = d; // конец правый нижний х
@@ -170,8 +168,7 @@ public class Tic_Tac_Toe_2 {
     private static boolean checkWin3(char sym, int x, int y) {
         int count = 0;
         int d = SIZE_X; //длина стороны квадратного поля d
-        int n = 4;   //количество фишек вряд для победы n=4
-        if (n + 1 <= x + y + 2 && x + y <= d + 1 && x + y <= d - 1) { //проверка верхних диагоналей "/"
+        if (WIN_COUNT + 1 <= x + y + 2 && x + y <= d + 1 && x + y <= d - 1) { //проверка верхних диагоналей "/"
             int a = 0; // начало левый нижний x
             int b = 0; //= x + y-a; //начало левый нижний y
             int az = x + y + 1; // конец правый верхний х
@@ -194,13 +191,11 @@ public class Tic_Tac_Toe_2 {
     private static boolean checkWin4(char sym, int x, int y) {
         int count = 0;
         int d = SIZE_X; //длина стороны квадратного поля d
-        int n = 4;   //количество фишек вряд для победы n=4
-        if (d <= x + y && x + y <= d + d + 1 - n) { //проверка нижних диагоналей "/"
+        if (d <= x + y && x + y <= d + d + 1 - WIN_COUNT) { //проверка нижних диагоналей "/"
             int b= d-1; //начало левый нижний y
             int a = x - d + y+1; // начало левый нижний x
             int az = b; // конец правый верхний х
             int bz = y-(d-x-1);//d-1; //конец правый верхний у
-
             for (az=b; az>=a; a++) {
                 b = x-a+y;
                 if (field[b][a] == sym) {
